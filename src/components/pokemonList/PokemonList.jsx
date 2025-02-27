@@ -26,7 +26,6 @@ function PokemonList() {
                     types : poke.types,
                 }
             })
-            console.log(result);
             setPokeList(result);
             isLoading(false);
         } catch (error) {
@@ -41,10 +40,13 @@ function PokemonList() {
     return (
         <div className="pokemonList-wrapper">
             <p>Pokemon List</p>
-            {
-                (loading) ?  "Loading...." :
-                pokeList.map((p)=> <Pokemon id={p.id} name={p.name} image={p.image} />)
-            }
+            <div className="pokemonList-pokemons">
+                {
+                    (loading) ?  "Loading...." :
+                    pokeList.map((p)=> <Pokemon id={p.id} name={p.name} image={p.image} />)
+                }
+            </div>
+            
         </div>
     )
 }

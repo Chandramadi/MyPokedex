@@ -2,3 +2,17 @@
 .pokemonList-wrapper {
     margin-top: 20px;
 }
+
+.pokemonList-wrapper > p {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: 8px;
+}
+
+.pokemonList-pokemons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    margin-top: 30px;
+}
