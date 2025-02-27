@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import "./pokemonList.css";
 import Pokemon from "../pokemon/Pokemon";
 
@@ -7,10 +7,19 @@ function PokemonList() {
 
     const [pokeList, setPokeList] = useState([]);
     const [loading, isLoading] = useState(true);
+    const [pokedexUrl, setPokedexUrl] = useState("https://pokeapi.co/api/v2/pokemon");
+
+    const [prevUrl, setPrevUrl] = useState('');
+    const [nextUrl, setNextUrl] = useState('');
 
     async function loadPokemonList() {
         try {
-            const response = await axios.get("https://pokeapi.co/api/v2/pokemon");
+            isLoading(true);
+            const response = await axios.get(pokedexUrl);
+            
+            setPrevUrl(response.data.previous); // set the previous
+            setNextUrl(response.data.next); // set the next
+
             const pokemonResults = response.data.results; // array of first 20 pokemons
 
             const pokemonPromise = pokemonResults.map((pokemon)=>axios.get(pokemon.url)); // array of 20 pokemon's url
@@ -35,7 +44,7 @@ function PokemonList() {
 
     useEffect(()=>{
         loadPokemonList();
-    },[]);
+    },[pokedexUrl]); // on the change of pokedexUrl then reload
 
     return (
         <div className="pokemonList-wrapper">
@@ -45,6 +54,11 @@ function PokemonList() {
                     (loading) ?  "Loading...." :
                     pokeList.map((p)=> <Pokemon id={p.id} name={p.name} image={p.image} />)
                 }
+            </div>
+
+            <div className="pokemonList-buttons">
+                <button disabled={prevUrl==null} onClick={()=>setPokedexUrl(prevUrl)}>Prev</button>
+                <button disabled={nextUrl==null} onClick={()=>setPokedexUrl(nextUrl)}>Next</button>
             </div>
             
         </div>
