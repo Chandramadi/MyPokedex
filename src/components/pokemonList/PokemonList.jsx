@@ -21,13 +21,14 @@ function PokemonList() {
             setNextUrl(response.data.next); // set the next
 
             const pokemonResults = response.data.results; // array of first 20 pokemons
-
+            
             const pokemonPromise = pokemonResults.map((pokemon)=>axios.get(pokemon.url)); // array of 20 pokemon's url
 
             const pokemonData = await axios.all(pokemonPromise); // array of all the first 20 pokemon's details
-            
+
             const result = pokemonData.map((pokemon)=>{ // accessing name, id, image, and type data
                 const poke = pokemon.data;
+                // console.log(poke);
                 return {
                     id : poke.id,
                     name : poke.name,
@@ -52,7 +53,7 @@ function PokemonList() {
             <div className="pokemonList-pokemons">
                 {
                     (loading) ?  "Loading...." :
-                    pokeList.map((p)=> <Pokemon id={p.id} name={p.name} image={p.image} />)
+                    pokeList.map((p)=> <Pokemon name={p.name} image={p.image} id={p.id} />)
                 }
             </div>
 
