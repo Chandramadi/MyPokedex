@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import "./pokemonDetails.css";
 
 function PokemonDetails() {
     const {id} = useParams();
@@ -8,7 +9,7 @@ function PokemonDetails() {
 
     async function loadPokemonDetails() {
         const response = await axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`);
-
+        console.log(response.data);
         const data = {
             name : response.data.name,
             height : response.data.height,
@@ -25,12 +26,12 @@ function PokemonDetails() {
     },[]);
 
     return (
-        <div>
+        <div className="pokemonDetails-wrapper">
             <img src={pokemonDetails.image} alt={pokemonDetails.name} />
             <h1>{pokemonDetails.name}</h1>
             <p>Height : {pokemonDetails.height}</p>
             <p>Weight : {pokemonDetails.weight}</p>
-            <div>Types:
+            <div className="pokemonDetails-types">
                 {pokemonDetails.types ? (
                     pokemonDetails.types.map((type, index) => <p key={index}>{type}</p>)
                 ) : "Loading..."}

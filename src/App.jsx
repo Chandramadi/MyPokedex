@@ -6,7 +6,10 @@ import CustomRoutes from './routes/CustomRoutes'
 function App() {
 
   return (
-    <CustomRoutes />
+    <>
+      <h1 className="mypokedex">MyPokeDex</h1>
+      <CustomRoutes />
+    </>
   )
 }
 

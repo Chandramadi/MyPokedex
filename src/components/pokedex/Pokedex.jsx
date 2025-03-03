@@ -6,7 +6,6 @@ function Pokedex() {
 
     return (
         <div className="pokedex-wrapper">
-            <h1>MyPokeDex</h1>
             <Search />
         </div>
     )

@@ -20,3 +20,8 @@
     height: 270px;
     margin: 0 auto;
 }
+
+a {
+    text-decoration: none;
+    color : black;
+}

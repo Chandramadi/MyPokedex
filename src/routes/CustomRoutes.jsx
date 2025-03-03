@@ -15,7 +15,14 @@ function CustomRoutes() {
                     </div>
                 }
             />
-            <Route path="/pokemon/:id" element={<PokemonDetails/>} />
+            <Route 
+                path="/pokemon/:id" 
+                element={
+                    <div>
+                        <PokemonDetails/>
+                    </div>
+                } 
+            />
         </Routes>
     )
 }

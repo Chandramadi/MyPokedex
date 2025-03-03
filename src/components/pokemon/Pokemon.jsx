@@ -4,12 +4,12 @@ import "./pokemon.css";
 function Pokemon({name, image, id}) {
 
     return(
+        <Link to={`/pokemon/${id}`}>
         <div className="pokemon-wrapper">
-            <Link to={`/pokemon/${id}`}>
                 <p className="pokemon-names">{name}</p>
                 <img src={image} alt={name} className="pokemon-images"/>
-            </Link>
         </div>
+        </Link>
     )
 
 }
